@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAGA – Our Activities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    /*
+     * Monofontis — custom display font.
+     * Place font files in ./fonts/ and update src paths below.
+     */
+    @font-face {
+      font-family: 'Monofontis';
+      src: url('fonts/Monofontis-Medium.woff2') format('woff2'),
+           url('fonts/Monofontis-Medium.woff')  format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      background: #000;
+    }
+
+    /* ═══════════════════════════════════════════════
+       HERO SECTION
+       Relative container; pt-116px pushes content
+       below the absolute-positioned nav.
+    ═══════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      padding-top: 116px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── Background: black fill + photo ── */
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero__bg-black {
+      position: absolute;
+      inset: 0;
+      background: #000;
+    }
+
+    .hero__bg-overflow {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    /*
+     * Image is 216.49% of the container's height,
+     * offset upward by 55.84% — shows the upper-centre
+     * portion of the photo, exactly as designed.
+     */
+    .hero__bg-img {
+      position: absolute;
+      left: 0;
+      top: -55.84%;
+      width: 100%;
+      height: 216.49%;
+      max-width: none;
+      display: block;
+      object-fit: fill;
+    }
+
+    /* ── Semi-transparent overlay ── */
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    /* ═══════════════════════════════════════════════
+       NAV  —  absolute, 70 px tall, overflows clipped
+       Border-bottom: 1 px rgba(255,241,222,0.25)
+    ═══════════════════════════════════════════════ */
+    .nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 241, 222, 0.25);
+      z-index: 10;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    /* ── Logo cell — 183 px wide, border-right ── */
+    .nav__logo {
+      width: 183px;
+      height: 69px;
+      flex-shrink: 0;
+      border-right: 1px solid rgba(255, 241, 222, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 24px;
+    }
+
+    .nav__logo-img {
+      /* Design: 109.896 × 40 px */
+      width: 109.896px;
+      height: 40px;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* ── Menu items — flex-1, right-aligned ── */
+    .nav__menu {
+      flex: 1 0 0;
+      height: 69px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+      padding: 16px 24px;
+    }
+
+    .nav__menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      font-family: 'Onest', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.32;
+      color: #efece6;
+      text-decoration: none;
+      white-space: nowrap;
+      list-style: none;
+    }
+
+    /* ── Hamburger area — border-left, items-start ── */
+    .nav__buttons {
+      height: 69px;
+      display: flex;
+      align-items: flex-start;
+      flex-shrink: 0;
+      border-left: 1px solid rgba(255, 241, 222, 0.25);
+    }
+
+    .nav__hamburger {
+      /* Square: full height × same width → 69 × 69 */
+      width: 69px;
+      height: 100%;
+      background: #efece6;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      flex-shrink: 0;
+    }
+
+    .nav__hamburger-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .nav__hamburger-line {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #2c1d08;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════
+       HERO CONTENT
+       Grows to fill remaining hero height.
+       Text section: pt-24 pb-120 px-24
+    ═══════════════════════════════════════════════ */
+    .hero__content {
+      position: relative;
+      flex: 1 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .hero__text {
+      padding: 24px 24px 120px;
+      width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* ── Inner group: breadcrumb + title + subtitle ── */
+    .hero__text-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    /* ── Breadcrumb: Home · Our Activities ── */
+    .breadcrumb {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .breadcrumb__item {
+      font-family: 'Onest', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.32;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .breadcrumb__dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 100px;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    /* ── Hero title — Monofontis Medium 52 px ── */
+    .hero__title {
+      font-family: 'Monofontis', sans-serif;
+      font-size: 52px;
+      font-weight: 500;
+      font-style: normal;
+      text-transform: capitalize;
+      line-height: 1.08;
+      letter-spacing: -2.6px;
+      color: #fff;
+      white-space: pre-line;
+    }
+
+    .hero__title-accent {
+      color: #e63916;
+    }
+
+    /* ── Subtitle — Onest Light 18 px, 538 px wide ── */
+    .hero__sub-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+    }
+
+    .hero__subtitle {
+      font-family: 'Onest', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.54px;
+      color: #fff;
+      width: 538px;
+    }
+
+    /* ── CTA button — underline style ── */
+    .hero__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 0;
+      border-bottom: 1.5px solid #e63916;
+      font-family: 'Onest', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.32;
+      color: #e63916;
+      text-align: center;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+
+    <!-- ── Background image + black fill ── -->
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__bg-black"></div>
+      <div class="hero__bg-overflow">
+        <!--
+          Figma asset URL expires in ~7 days.
+          Replace src with a permanent path, e.g. gaga-activities-lobby.png
+        -->
+        <img class="hero__bg-img"
+             src="https://www.figma.com/api/mcp/asset/24f9d76c-b380-4115-b12f-def2b4544863"
+             alt="">
+      </div>
+    </div>
+
+    <!-- ── Dark overlay rgba(0,0,0,0.45) ── -->
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════
+         NAV
+    ══════════════════════════════════════════ -->
+    <nav class="nav" aria-label="Main navigation">
+
+      <!-- Logo — 183 px cell, border-right -->
+      <div class="nav__logo">
+        <!--
+          Figma asset URL expires in ~7 days.
+          Replace with permanent logo asset.
+        -->
+        <img class="nav__logo-img"
+             src="https://www.figma.com/api/mcp/asset/b1d2f867-881e-493d-8305-589d337a8a31"
+             alt="Gaga">
+      </div>
+
+      <!-- Menu items — flex-1, right-aligned -->
+      <div class="nav__menu" role="list">
+        <a class="nav__menu-item" href="#">Gaga online</a>
+        <a class="nav__menu-item" href="#">Activities</a>
+        <a class="nav__menu-item" href="#">Shop</a>
+        <a class="nav__menu-item" href="#">About</a>
+      </div>
+
+      <!-- Hamburger — 69×69, bg #efece6, border-left -->
+      <div class="nav__buttons">
+        <button class="nav__hamburger" type="button"
+                aria-label="Open menu" aria-expanded="false">
+          <div class="nav__hamburger-icon" aria-hidden="true">
+            <span class="nav__hamburger-line"></span>
+            <span class="nav__hamburger-line"></span>
+          </div>
+        </button>
+      </div>
+
+    </nav>
+
+    <!-- ══════════════════════════════════════════
+         HERO CONTENT
+    ══════════════════════════════════════════ -->
+    <div class="hero__content">
+      <div class="hero__text">
+
+        <!-- Text group: breadcrumb + title + subtitle -->
+        <div class="hero__text-group">
+
+          <!-- Breadcrumb -->
+          <div class="breadcrumb" aria-label="Breadcrumb">
+            <a class="breadcrumb__item" href="#">Home</a>
+            <div class="breadcrumb__dot" aria-hidden="true"></div>
+            <span class="breadcrumb__item">Our Activities</span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="hero__title">Our successful products&#x20;<br><span class="hero__title-accent">for great movement</span></h1>
+
+          <!-- Subtitle -->
+          <div class="hero__sub-wrap">
+            <p class="hero__subtitle">Lorem ipsum dolor sit amet, consectetur</p>
+          </div>
+
+        </div>
+
+        <!-- CTA button -->
+        <a class="hero__cta" href="#">Our Activities</a>
+
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>
